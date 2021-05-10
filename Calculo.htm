@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cálculos de Contrato CS</title>
-    <link rel="stylesheet" href="CalculoVersao1.css">
+    <link rel="stylesheet" href="CalculoVersao2.css">
 </head>
 <body>
     <header><h1>Cálculos de Contratos</h1></header>
@@ -20,9 +20,9 @@
 
         <div>
             <p><h3>REDAÇÃO</h3></p>
-            O contrato inicial possui redações? <input type="radio" id="simRedacao" name="redacao" checked>
+            O contrato inicial possui redações? <input type="radio" id="simRedacao" name="redacao">
             <label for="simRedacao">Sim</label>
-            <input type="radio" id="naoRedacao" name="redacao">
+            <input type="radio" id="naoRedacao" name="redacao" checked>
             <label for="naoRedacao">Não</label><br>
             <p>Quantas redações por aluno? <input type="number" id="numeroRedacoes"></p> 
         </div>
@@ -30,9 +30,9 @@
         <div>
             <h3>ADITIVOS</h3>
             <p>
-                O contrato possui aditivos? <input type="radio" id="sim" name="respostaAditivo" checked>
+                O contrato possui aditivos? <input type="radio" id="sim" name="respostaAditivo">
             <label for="sim">Sim</label>
-            <input type="radio" id="nao" name="respostaAditivo">
+            <input type="radio" id="nao" name="respostaAditivo" checked>
             <label for="nao">Não</label>
             </p> 
             <p>
@@ -46,15 +46,20 @@
                 <label for="alterarVigencia">Alteração de vigência</label><br>
                 Diferença de meses: <input type="number" id="respMes">
                 <p>
-                    <input type="button" value="Calcular" onclick="calcular()">
+                    <input type="button" value="Adicionar" onclick="adicionar()">
                 </p>
             </p>
+        
+        <div>
+            <select size="10" id="lista"></select><br>
+            <input type="button" value="Calcular" onclick="calcular()">
+        </div>
         </div>
 
         <div id="resultado">
 
         </div>
     </section>
-    <script src="CalculoVersao1.js"></script>
+    <script src="CalculoVersao2.js"></script>
 </body>
 </html>
