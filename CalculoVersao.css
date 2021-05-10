@@ -1,0 +1,18 @@
+body{
+    background: lightsalmon;
+}
+
+header{
+    color: white;
+    text-align: center;
+}
+
+section{
+    background: white;
+    width: 500px;
+    border-radius: 20px;
+    margin: auto;
+    padding: 10px;
+    line-height: 25px;
+
+}

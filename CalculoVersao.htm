@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculos de Contrato CS</title>
+    <link rel="stylesheet" href="CalculoVersao1.css">
+</head>
+<body>
+    <header><h1>Cálculos de Contratos</h1></header>
+    <section>
+
+        <div>
+            <p><h3>CONTRATO</h3></p>
+            <p>Quantidade de alunos: <input type="number" id="alunos"></p>
+            <p>Tempo em meses: <input type="number" id="meses"></p>
+            <p>Valor aluno/mês: <input type="number" id="valorUnitario"></p>
+        </div>
+
+        <div>
+            <p><h3>REDAÇÃO</h3></p>
+            O contrato inicial possui redações? <input type="radio" id="simRedacao" name="redacao" checked>
+            <label for="simRedacao">Sim</label>
+            <input type="radio" id="naoRedacao" name="redacao">
+            <label for="naoRedacao">Não</label><br>
+            <p>Quantas redações por aluno? <input type="number" id="numeroRedacoes"></p> 
+        </div>
+
+        <div>
+            <h3>ADITIVOS</h3>
+            <p>
+                O contrato possui aditivos? <input type="radio" id="sim" name="respostaAditivo" checked>
+            <label for="sim">Sim</label>
+            <input type="radio" id="nao" name="respostaAditivo">
+            <label for="nao">Não</label>
+            </p> 
+            <p>
+                De que tipo?<br>
+                <p><input type="radio" id="alterarAlunos" name="tipoAditivo">
+                <label for="alterarAlunos">Altaração de alunos</label><br>
+                Diferença de alunos: <input type="number" id="respAlunos1"><br>
+                Mês da mudança: <input type="number" id="respAlunos2">
+                </p>
+                <input type="radio" id="alterarVigencia" name="tipoAditivo">
+                <label for="alterarVigencia">Alteração de vigência</label><br>
+                Diferença de meses: <input type="number" id="respMes">
+                <p>
+                    <input type="button" value="Calcular" onclick="calcular()">
+                </p>
+            </p>
+        </div>
+
+        <div id="resultado">
+
+        </div>
+    </section>
+    <script src="CalculoVersao1.js"></script>
+</body>
+</html>
