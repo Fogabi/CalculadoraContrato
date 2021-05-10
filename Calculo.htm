@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cálculos de Contrato CS</title>
-    <link rel="stylesheet" href="CalculoVersao2.css">
+    <link rel="stylesheet" href="CalculoVersao3.css">
 </head>
 <body>
     <header><h1>Cálculos de Contratos</h1></header>
@@ -13,7 +13,7 @@
 
         <div>
             <p><h3>CONTRATO</h3></p>
-            <p>Quantidade de alunos: <input type="number" id="alunos"></p>
+            <p>Quantidade de assinaturas: <input type="number" id="alunos"></p>
             <p>Tempo em meses: <input type="number" id="meses"></p>
             <p>Valor aluno/mês: <input type="number" id="valorUnitario"></p>
         </div>
@@ -25,31 +25,30 @@
             <input type="radio" id="naoRedacao" name="redacao" checked>
             <label for="naoRedacao">Não</label><br>
             <p>Quantas redações por aluno? <input type="number" id="numeroRedacoes"></p> 
+            <input type="button" onclick="adicionarContrato()" value="Adicionar contrato">
         </div>
 
         <div>
             <h3>ADITIVOS</h3>
-            <p>
-                O contrato possui aditivos? <input type="radio" id="sim" name="respostaAditivo">
-            <label for="sim">Sim</label>
-            <input type="radio" id="nao" name="respostaAditivo" checked>
-            <label for="nao">Não</label>
-            </p> 
-            <p>
-                De que tipo?<br>
-                <p><input type="radio" id="alterarAlunos" name="tipoAditivo">
-                <label for="alterarAlunos">Altaração de alunos</label><br>
-                Diferença de alunos: <input type="number" id="respAlunos1"><br>
-                Mês da mudança: <input type="number" id="respAlunos2">
-                </p>
-                <input type="radio" id="alterarVigencia" name="tipoAditivo">
-                <label for="alterarVigencia">Alteração de vigência</label><br>
-                Diferença de meses: <input type="number" id="respMes">
-                <p>
-                    <input type="button" value="Adicionar" onclick="adicionar()">
-                </p>
-            </p>
-        
+
+            <p>Atual número de assinaturas: <input type="number" id="atualAlunos"></p>
+
+            <p>Atual valor: <input type="number" id="atualValor"></p>
+
+            <p>Atual vigência: <input type="number" id="atualVigencia"></p>
+
+            <p>Atual número de redações: <input type="number" id="atualRedacoes"></p>
+
+            <h5>A partir daqui, se não houver alteração em algum campo, deixar em branco!</h5>
+
+            <p>Diferença no número de assinaturas: <input type="number" id="diferencaAlunos"></p>
+
+            <p>Mudou o n de assinaturas a partir de qual mês? <input type="number" id="diferencaMes"></p>
+
+            <p>Diferença de vigência: <input type="number" id="diferencaVigencia"></p>
+
+            <p><input type="button" onclick="adicionarAditivo()" value="Adicionar aditivo"></p>
+       
         <div>
             <select size="10" id="lista"></select><br>
             <input type="button" value="Calcular" onclick="calcular()">
@@ -60,6 +59,6 @@
 
         </div>
     </section>
-    <script src="CalculoVersao2.js"></script>
+    <script src="CalculoVersao3.js"></script>
 </body>
 </html>

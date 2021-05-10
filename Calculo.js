@@ -4,107 +4,99 @@ let valorUnitario = document.querySelector('input#valorUnitario')
 let resultado = document.querySelector('div#resultado')
 let redacao = document.getElementsByName('redacao')
 let numeroRedacoes = document.querySelector('input#numeroRedacoes')
-let respostaAditivos = document.getElementsByName('respostaAditivo')
-let tipoAditivo = document.getElementsByName('tipoAditivo')
-let respAlunos1 = document.querySelector('input#respAlunos1')
-let respAlunos2 = document.querySelector('input#respAlunos2')
-let respMes = document.querySelector('input#respMes')
+let atualAlunos = document.querySelector('input#atualAlunos')
+let atualValor = document.querySelector ('input#atualValor')
+let atualVigencia = document.querySelector ('input#atualVigencia')
+let atualRedacoes = document.querySelector('input#atualRedacoes')
+let diferencaAlunos = document.querySelector('input#diferencaAlunos')
+let diferencaVigencia = document.querySelector('input#diferencaVigencia')
+let diferencaMes = document.querySelector('input#diferencaMes')
 let lista = document.querySelector('select#lista')
 let valores = []
 
-function adicionar(){
 
-    diferecaMeses = Number(meses.value) - Number(respAlunos2.value) + 1 //essa variável se refere ao total de meses que os novos alunos vão aproveitar o produto
+function adicionarContrato(){
 
-    somaContrato = Number(alunos.value) * Number(meses.value) * Number(valorUnitario.value)  //Soma simples para contratos sem redação e sem aditivos
-
-    somaAditivo = diferecaMeses * Number(respAlunos1.value) * Number(valorUnitario.value)
-
-    somaCaso2= somaContrato + somaAditivo  //Caso em que não tem redação mas tem aditivo do tipo 1
-
-    somaCaso3b = somaContrato + (alunos.value * respMes.value)
-
-    somaCaso3a = respMes.value * alunos.value * valorUnitario.value  //Caso em que não tem redação mas tem aditivo do tipo 2 - valor acrescentado
-
-    somaRedacao = Number(alunos.value) * Number(meses.value) * (numeroRedacoes.value * 3.50) //Soma das redações de contrato simples
-
-    somaRedacao2 = Number(alunos.value) * Number(respMes.value) * (numeroRedacoes.value *3.50)  /*Quando aumentar os meses de vigência, tenho que acrescentar redações nesses meses*/
-
-    somaContratoERedacao = somaContrato + somaRedacao   //Soma de contrato e redações de contrato simples
-
-    somaCaso5 = somaContratoERedacao + somaAditivo + (numeroRedacoes.value * respAlunos1.value * diferecaMeses * 3.50) //Caso em que tem redação e aditivo op 1
-
-    somaCaso6 =  somaContrato + somaRedacao + somaRedacao2 + (valorUnitario.value * alunos.value * respMes.value)  //Caso em que tem redação e aditivo op 2
+     somaContrato = Number(alunos.value) * Number(meses.value)  * Number(valorUnitario.value)
+     somaRedacao = Number(alunos.value) * Number(meses.value) * (numeroRedacoes.value*3.50)
+     somaContratoERedacao = somaContrato + somaRedacao
 
 
     if(redacao[1].checked){
-        if (respostaAditivos[1].checked){
-            var item = document.createElement('option')
-            lista.appendChild(item)
-            item.text = `${somaContrato.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
-            valores.push(somaContrato)
+        var item = document.createElement('option')
+        item.text = `${somaContrato.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
+        lista.appendChild(item)
+        valores.push(somaContrato)
 
-        }else if(respostaAditivos[0].checked){
-            if(tipoAditivo[0].checked){ 
-                var item = document.createElement('option')
-                lista.appendChild(item)
-                item.text = `${somaCaso2.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
-                valores.push(somaCaso2)
+    }else if(redacao[0].checked){
+        var item = document.createElement('option')
+        item.text = `${somaContratoERedacao.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
+        lista.appendChild(item)
+        valores.push(somaContratoERedacao)
 
-           
-            }else if(tipoAditivo[1].checked){
-                var item = document.createElement('option')
-                lista.appendChild(item)
-                item.text = `${somaCaso3b.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
-                valores.push(somaCaso3b)
- 
-            }
-
-        }
-    } else if(redacao[0].checked){
-        if(respostaAditivos[1].checked){
-            var item = document.createElement('option')
-            lista.appendChild(item)
-            item.text = `${somaContratoERedacao.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
-            valores.push(somaContratoERedacao)
-           
-
-        }else if(respostaAditivos[0].checked){
-            if(tipoAditivo[0].checked){
-                var item = document.createElement('option')
-                lista.appendChild(item)
-                item.text = `${somaCaso5.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
-                valores.push(somaCaso5)
-                
-
-            }else if(tipoAditivo[1].checked){
-                var item = document.createElement('option')
-                lista.appendChild(item)
-                item.text = `${somaCaso6.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
-                valores.push(somaCaso6)
-               
-                
-            }
-        }
     }
-    soma = 0
     alunos.value = ''
     meses.value = ''
     valorUnitario.value = ''
-    respAlunos1.value = ''
-    respAlunos2.value = ''
-    respMes.value = ''
     numeroRedacoes.value = ''
+}
+
+function adicionarAditivo(){
+
+    somaAtualRedacoes = atualVigencia.value * atualAlunos.value * (atualRedacoes.value*3.50)
+
+    somaAtual = atualAlunos.value * atualValor.value * atualVigencia.value + somaAtualRedacoes
+
+    somaRedacaoCaso1 = diferencaVigencia.value * atualAlunos.value * (atualRedacoes.value*3.50)
+
+    somaCaso1 = diferencaVigencia.value * atualAlunos.value * atualValor.value + somaRedacaoCaso1
+
+    somaRedacaoCaso2 = diferencaAlunos.value * (atualVigencia.value - diferencaMes.value + 1) * (atualRedacoes.value * 3.50)
+
+    somaCaso2 = (atualVigencia.value - diferencaMes.value + 1) * atualValor.value * diferencaAlunos.value + somaRedacaoCaso2
+
+    somaRedacaoCaso3 = Number(diferencaAlunos.value) * Number(atualRedacoes.value * 3.50) * (Number(atualVigencia.value)+ Number(diferencaVigencia.value) - Number(diferencaMes.value) + 1)
+
+    somaRedacaoCaso3a = (Number(diferencaVigencia.value) * Number(atualAlunos.value)*(Number(atualRedacoes.value)*3.50))
+
+    somaCaso3 = Number(diferencaAlunos.value)  * Number(atualValor.value)  * (Number(atualVigencia.value)  + Number(diferencaVigencia.value)  - Number(diferencaMes.value)+ 1) + somaRedacaoCaso3 + (Number(diferencaVigencia.value) *Number(atualAlunos.value) * Number(atualValor.value)) + somaRedacaoCaso3a
+
+
+    if(diferencaAlunos.value.length == 0){
+          var item = document.createElement('option')
+          item.text = `${somaCaso1.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado` 
+          lista.appendChild(item)
+          valores.push(somaCaso1)
+            
+    }else if(diferencaVigencia.value.length == 0){
+        var item = document.createElement('option')
+        item.text = `${somaCaso2.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
+        lista.appendChild(item)
+        valores.push(somaCaso2)
+
+    }else if(diferencaAlunos.length !==0 && diferencaVigencia.length !==0){
+        var item = document.createElement('option')
+        item.text = `${somaCaso3.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado!`
+        lista.appendChild(item)
+        valores.push(somaCaso3)
+
+    }
+    atualAlunos.value = ''
+    atualRedacoes.value = ''
+    atualValor.value = ''
+    atualVigencia.value = ''
+    diferencaVigencia.value = ''
+    diferencaMes.value = ''
+    diferencaAlunos.value = ''
+    redacao= redacao[1].checked
 
 }
-let soma = 0
 
 function calcular(){
+    let soma = 0 
     for (let pos in valores){
         soma = soma + valores[pos]
     }
-    resultado.innerHTML += `O valor total do contrato é de ${soma.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}`
+    resultado.innerHTML += `O valor total dos itens é de ${soma.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} \u{1F609}`
+    lista.length = ''
 }
-
-
-
